@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!-- John Brandenburg -->
+<!-- Visual Frameworks -->
+<!-- Term 0113 -->
+<!-- Project 1: Homework Tracker -->
+
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -12,6 +17,8 @@
 	</head>
 	<body>
 		<h1>Homework Tracker</h1>
+
+<!--Start of my form -->
 		<form action="#" method="post">
 			<fieldset>
 				<legend>Student Information</legend>
@@ -21,45 +28,43 @@
 				</ul>
 			</fieldset>
 			<fieldset>
+
+<!-- Start of assignemt information fields -->
 				<legend>Assignment Information</legend>
-					<ul>
-						<li>
-							<ul>
-							<label for="course">Course</label>
-							<select id="course">
-								<optgroup label="Current Courses">
-									<option value="Visual Frameworks">Visual Frameworks</option>
-									<option value="Scalable Data Infrastructure">Scalable Data Infrastructure</option>
-									<option value="Project Managment Online">Project Managment Online</option>\
-								</optgroup>
-							</select>
-							</ul>
-						</li>
-					</ul>
-					<ul>
-						<li>
-							<ul>
-							<label for="project">Project Due?</label>
-								<li><input type="radio" checked value="Yes" id="Yes" name="due" /><label for="Yes">Yes</label.>
-								<li><input type="radio" value="No" id="No" name="due" /><label for="No">No</label.>
-								<li><input type="radio" value="Unknown" id="Unknown" name="due" /><label for="Unknown">Unknown</label.>
-							</ul>
-						</li>
-					</ul>		
-					<ul>
-						<li><label for="startdate">Date Due:</label><input type="date" min="2000-01-01" max="3000-01-01" id="duedate" name=duedate></li>
-						
-					</ul>
-					<ul>
-						<li><label for="textarea">Notes:</label></li>	
-						<li><textarea type="text" id="textarea"></textarea></li>
-					</ul>		Due Date date
-							Reading Assignment book title, page numbers
-							Time to complete-slider
-						
+				<ul>
+					<li><label for="course">Course</label>
+						<select id="course">
+							<optgroup label="Current Courses">
+								<option value="Visual Frameworks">Visual Frameworks</option>
+								<option value="Scalable Data Infrastructure">Scalable Data Infrastructure</option>
+								<option value="Project Managment Online">Project Managment Online</option>\
+							</optgroup>
+						</select>
+					</li>
+				</ul>
+				<ul>
+					<li><label for="project">Project Due?</label>
+						<ul>
+							<li><input type="radio" checked value="Yes" id="Yes" name="due" /><label for="Yes">Yes</label.>
+							<li><input type="radio" value="No" id="No" name="due" /><label for="No">No</label.>
+							<li><input type="radio" value="Unknown" id="Unknown" name="due" /><label for="Unknown">Unknown</label.>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li><label for="startdate">Date Due:</label><input type="date" min="2000-01-01" max="3000-01-01" id="duedate" name=duedate></li>
+				</ul>
+				<ul>
+					<li><label for="textarea">Notes:</label></li>	
+					<textarea type="text" id="textarea"></textarea>
+				</ul>
+				<ul>
+					<li><label for="time">Total Hours To Complete</label><input type="range" min="1" max="10" name="time" type="range"></li>
+				</ul>
 			</fieldset>
-			<input type="submit" value="Save my stuff!" />
+<!-- End of form -->
 		</form>
+		<input type="submit" value="Save my stuff!" />
 	</body>
-		<p><a href="#">Clear Stored Data</a> <a href="#">Display Stored Data</a></p>
+	<p><a href="#">Clear Stored Data</a> <a href="#">Display Stored Data</a></p>
 <html>
