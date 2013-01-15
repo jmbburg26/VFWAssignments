@@ -1,0 +1,13 @@
+/*
+title: my style sheet
+by: John Brandenburg
+Term: 0113
+*/
+
+h1 {
+	border: 2px solid black;
+	padding: 5px;
+	margin: 10px;
+	background: #ff1000;
+	
+}
