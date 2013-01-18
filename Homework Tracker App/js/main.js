@@ -10,6 +10,25 @@ window.addEventListener("DOMContentLoaded", function(){
 		return userElements;
 	};
 	
+//Create Select Field Option
+	function makeCourses(){
+		var courseTag = document.getElementsByTagName("course"),
+			selectLi = $('course'),
+			makeSelect = document.createElement('course');
+			makeSelect.setAttribute("id", "course");
+		for(var i=0, j=selectCourses.length; i<j; i++){
+			var makeOption = document.createElement('option');
+			var optText = selectCourses[i];
+			makeOption.setAttribute("value", optText);
+			makeOption.innerHTML = optText;
+			makeSelect.appendChild(makeOption);
+		}
+		selectLi.appendChild(makeSelect);	
+	}
+	
+//Variable Defaults
+var selectCourses = ["-- Current Courses --", "MMD2", "SDI", "VFW", "PMA"];
+makeCourses();	
 //Get Data Function
 
 	function getRadioButton(){
@@ -20,7 +39,25 @@ window.addEventListener("DOMContentLoaded", function(){
 			}
 		}
 	}
-
+	
+	function toggleControls(n){
+		switch(n){
+		case "on";
+			$('form').style.display = "none";
+			$('clearLink').style.display = "inline";
+			$('displayData').style.display = "none";
+			break;
+		case "off";
+			$('form').style.display = "block";
+			$('clearLink').style.display = "inline";
+			$('displayData').style.display = "inline";
+			$('userItem').style.display = "none";
+			break;
+		default;
+			return false;
+		}
+	};
+	
 	function storeData	(){
 		var userValues		=Math.floor(Math.random()*100000001);
 		
@@ -30,7 +67,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			userItem.course		= ["Course", $('course').value];
 			userItem.date		= ["Date", $('date').value];
 			userItem.notes		= ["Notes", $('notes').value];
-			userItem.answer		= ["Project Due", getRadioButton];
+			userItem.answer		= ["Project Due", dueValue];
 			userItem.complete	= ["Hours To Complete", $('complete').value];
 		localStorage.setItem(id, JSON.stringify(userItem));
 		alert("Homework Added!");
