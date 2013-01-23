@@ -26,21 +26,18 @@ window.addEventListener("DOMContentLoaded", function(){
 		selectLi.appendChild(makeSelect);	
 	}
 	
-//Variable Defaults
-var selectCourses = ["-- Current Courses --", "MMD2", "SDI", "VFW", "PMA"];
-makeCourses();
 
 //Get Data Function
 
 	function getRadioButton(){
-		var radios = document.forms[0].answer;
-		for (var i=0; i<radios.length; i++){
-			if(radios[i].checked){
-			dueValue = radios[i].value;
+		var findRadios = document.forms[0].due;
+		for (var i=0; i<findRadios.length; i++){
+			if(findRadios[i].checked){
+				dueValue = findRadios[i].value;
 			}
 		}
 	}
-	getRadioButton();
+
 	
 	function toggleControls(n){
 		switch(n){
@@ -62,18 +59,26 @@ makeCourses();
 	
 	function storeData	(){
 		var userValues		=Math.floor(Math.random()*100000001);
+		getRadioButton();
 		
 		var userItem			= {};
 			userItem.fname		= ["Full Name:", sData('fname').value];
 			userItem.email		= ["Email:", sData('email').value];
 			userItem.course		= ["Course", sData('course').value];
+			userItem.answer		= ["Project Due", dueValue];
 			userItem.date		= ["Date", sData('date').value];
 			userItem.notes		= ["Notes", sData('notes').value];
-			userItem.answer		= ["Project Due", dueValue];
 			userItem.complete	= ["Hours To Complete", sData('complete').value];
-		localStorage.setItem(id, JSON.stringify(userItem));
+		localStorage.setItem(userValues, JSON.stringify(userItem));
 		alert("Homework Added!");
 	}	
+	
+	//Variable Defaults
+	var selectCourses = ["-- Current Courses --", "MMD2", "SDI", "VFW", "PMA"],
+		dueValue;
+	
+
+	makeCourses();
 	
 	function getData(){
 	toggleControls("on");
