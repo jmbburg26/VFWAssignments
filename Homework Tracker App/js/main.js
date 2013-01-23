@@ -39,12 +39,13 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 
 	
-	function toggleControls(n){
+	function dataControls(n){
 		switch(n){
 		case "on":
 			sData('form').style.display = "none";
 			sData('clearLink').style.display = "inline";
 			sData('displayData').style.display = "none";
+			sData('addAssignment').style.display = "inline";
 			break;
 		case "off":
 			sData('form').style.display = "block";
@@ -57,7 +58,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
-	function storeData	(){
+	function storeData(){
 		var userValues		=Math.floor(Math.random()*100000001);
 		getRadioButton();
 		
@@ -81,7 +82,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	makeCourses();
 	
 	function getData(){
-	toggleControls("on");
+		dataControls("on");
 		//Write Data from Local Storage
 		var makeDiv = document.createElement('div');
 		makeDiv.setAttribute("id", "userItem");
@@ -91,12 +92,12 @@ window.addEventListener("DOMContentLoaded", function(){
 		sData('userItem').style.display = "block";
 		for(var i=0, j=localStorage.length; i<j; i++){
 			var newli = document.createElement('li');
+			var newLinksLi = document.createElement('li');
 			newList.appendChild(newli);
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
 			//Convert string back to object from JSON 
 			var newObj = JSON.parse(value);
-			
 			var newSubList = document.createElement('ul');
 			newli.appendChild(newSubList);
 			for(var n in newObj){
@@ -104,11 +105,13 @@ window.addEventListener("DOMContentLoaded", function(){
 				newSubList.appendChild(makeNewSubli);
 				var optSubText = newObj[n][0]+" "+newObj[n][1];
 				makeSubli.innerHTML = optSubText;
+				newSubList.appendChild(newLinksLi);
 			}
+			//newItemLinks();//Create and edit buttons for items in local storage
 		}
 	}
 
-//Clear Data
+	//Clear Data
 	function boomData(){
 		if(localStorage.length === 0){
 			alert("There is no assignment.")
@@ -120,10 +123,10 @@ window.addEventListener("DOMContentLoaded", function(){
 	};
 	
 	
-//Button Links
-	var displayLink = sData('display');
+	//Button Links
+	var displayLink = sData('displayDataLink');
 	displayLink.addEventListener("click", getData);
-	var clearLink = sData('clear');
+	var clearLink = sData('boom');
 	clearLink.addEventListener("click", boomData);
 	var save = sData('save');
 	save.addEventListener("click", storeData);

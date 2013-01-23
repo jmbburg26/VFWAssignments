@@ -25,6 +25,7 @@ p1 {
 	font-family: Times;
 	margin: 5px
 }
+
 form {
 	background: #fff;
 	margin: 5px
@@ -41,7 +42,7 @@ span {
 	text-align: center;
 	color: red;
 }
-p2 {
+nav {
 	font-family: Arial;
 	font-size: 12pt;
 }
