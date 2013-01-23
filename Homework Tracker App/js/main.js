@@ -4,13 +4,13 @@
 
 window.addEventListener("DOMContentLoaded", function(){
 
-//Save Data Function
+	//Save Data Function
 	function sData(x){
 		var userElements = document.getElementById(x);
 		return userElements;
 	};
 	
-//Create Select Field Option
+	//Create Select Field Option
 	function makeCourses(){
 		var courseTag = document.getElementsByTagName("form"),
 			selectLi = sData('select'),
@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 	
 
-//Get Data Function
+	//Get Radio Button Value Function
 
 	function getRadioButton(){
 		var findRadios = document.forms[0].due;
@@ -74,7 +74,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	}	
 	
 	//Variable Defaults
-	var selectCourses = ["-- Current Courses --", "MMD2", "SDI", "VFW", "PMA"],
+	var selectCourses = ["-- Current Courses --", "MMD", "MMD2", "SDI", "VFW", "PMA", "PMA 2"],
 		dueValue;
 	
 
@@ -82,30 +82,34 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	function getData(){
 	toggleControls("on");
-
-	//Write Data form Local Storage
-	var makeDiv = document.createElement('div');
-	makeDiv.setAttribute("id", "userItem");
-	var makeList = document.createElement('ul');
-	makeDiv.appendChild(makeList);
-	document.body.appendChild(makeDiv);
-	sData('userItem').style.display = "block";
-	for(var i=0, len=localStorage.length; i<len; i++){
-		var makeli = document.createElement('li');
-		makeList.appendChild(makeli);
-		var key = localStorage.key(i);
-		var value = localStorage.getItem(key);
-		
-		var obj = JSON.parse(value);
-		var makeSubList = document.createElement('ul');
-		makeli.appendChild(makeSubli);
-		var optSubText = obj[n][0]+" "+obj[n][1];
-		makeSubli.innerHTML = optSubText;
+		//Write Data from Local Storage
+		var makeDiv = document.createElement('div');
+		makeDiv.setAttribute("id", "userItem");
+		var newList = document.createElement('ul');
+		makeDiv.appendChild(newList);
+		document.body.appendChild(makeDiv);
+		sData('userItem').style.display = "block";
+		for(var i=0, j=localStorage.length; i<j; i++){
+			var newli = document.createElement('li');
+			newList.appendChild(newli);
+			var key = localStorage.key(i);
+			var value = localStorage.getItem(key);
+			//Convert string back to object from JSON 
+			var newObj = JSON.parse(value);
+			
+			var newSubList = document.createElement('ul');
+			newli.appendChild(newSubList);
+			for(var n in newObj){
+				var makeNewSubli = document.createElement('li');
+				newSubList.appendChild(makeNewSubli);
+				var optSubText = newObj[n][0]+" "+newObj[n][1];
+				makeSubli.innerHTML = optSubText;
+			}
 		}
 	}
 
 //Clear Data
-	function clearData(){
+	function boomData(){
 		if(localStorage.length === 0){
 			alert("There is no assignment.")
 		}else{
@@ -120,7 +124,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	var displayLink = sData('display');
 	displayLink.addEventListener("click", getData);
 	var clearLink = sData('clear');
-	clearLink.addEventListener("click", clearData);
+	clearLink.addEventListener("click", boomData);
 	var save = sData('save');
 	save.addEventListener("click", storeData);
 });
