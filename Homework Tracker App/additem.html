@@ -24,9 +24,11 @@
 		<form action="#" method="post" id="form" >
 			<fieldset>
 				<legend>Student Information</legend>
-				<ul>
-					<li><label for="fname">Name:</label><input type="text" id="fname" placeholder="John Smith" /></li>
-					<li><label for="email"><span>*</span>Email:</label><input type="email" id="email" placeholder="likethis@gmail.com"/></li><span>*optional</span>
+				<ul id="errors"></ul>
+				<ul id="student">
+					<li><label for="fname">First Name:</label><input type="text" id="fname" placeholder="John" /></li>
+					<li><label for="lname">Last Name:</label><input type="text" id="lname" placeholder="Smith" /></li>
+					<li><label for="email">Email:</label><input type="email" id="email" placeholder="likethis@gmail.com"/></li>
 				</ul>
 			</fieldset>
 			<fieldset>

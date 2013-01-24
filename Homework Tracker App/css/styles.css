@@ -37,8 +37,9 @@ legend {
 	font-variant: small-caps;
 }
 
-span {
+errors {
 	font-family: Times;
+	font-size 3pt;
 	text-align: center;
 	color: red;
 }

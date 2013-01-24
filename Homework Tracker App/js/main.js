@@ -59,11 +59,12 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 	
 	function storeData(){
-		var userValues		=Math.floor(Math.random()*100000001);
+		var userValues		= Math.floor(Math.random()*100000001);
 		getRadioButton();
 		
 		var userItem			= {};
-			userItem.fname		= ["Full Name:", sData('fname').value];
+			userItem.fname		= ["First Name:", sData('fname').value];
+			userItem.lname		= ["Last Name:", sData('lname').value];
 			userItem.email		= ["Email:", sData('email').value];
 			userItem.course		= ["Course:", sData('course').value];
 			userItem.answer		= ["Project Due:", dueValue];
@@ -74,12 +75,8 @@ window.addEventListener("DOMContentLoaded", function(){
 		alert("Homework Added!");
 	}	
 	
-	//Variable Defaults
-	var selectCourses = ["-- Current Courses --", "MMD", "MMD2", "SDI", "VFW", "PMA", "PMA 2"],
-		dueValue;
-	
 
-	makeCourses();
+	
 	
 	function getData(){
 		dataControls("on");
@@ -149,6 +146,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		
 		//populate form 
 		sData('fname').value = userItem.fname[1];
+		sData('lname').value = userItem.lname[1];
 		sData('email').value = userItem.email[1];
 		sData('course').value = userItem.course[1];
 		var radioValue = document.forms[0].dueValue;
@@ -179,7 +177,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	//Clear Data
 	function boomData(){
 		if(localStorage.length === 0){
-			alert("There is no assignment.")
+			alert("There are no assignments.")
 		}else{
 			localStorage.clear();
 			alert("All homework has been deleted!");
@@ -188,9 +186,74 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
-	function validate(){
-	
+	function validate(e){
+		//Define elements to check
+		var getFname = sData('fname');
+		var getLname = sData('lname');
+		var getEmail = sData('email');
+		var getCourse = sData('course');
+		
+		//Reset Error Message
+		errValue.innerHTML = "";
+		getFname.style.border = "1px solid black";
+		getLname.style.border = "1px solid black";
+		getEmail.style.border = "1px solid black";
+		getCourse.style.border = "1px solid black";
+		
+		//Error messages
+		var errorMessage = [];
+
+		//First name
+		if(getFname.value=== ""){
+			var fNameError = "Please enter a first name."
+			getFname.style.border = "1px solid red";
+			errorMessage.push(fNameError);
+		}
+		
+		//Last Name
+		if(getLname.value=== ""){
+			var lNameError = "Please enter a last name."
+			getLname.style.border = "1px solid red";
+			errorMessage.push(lNameError);
+		}
+		
+		//Email
+		var regEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if(!(regEx.exec(getEmail.value))){
+			var emailError = "Please enter a valid email address.";
+			getEmail.style.border = "1px solid red";
+			errorMessage.push(emailError);
+		}
+		
+		
+		//Course
+		if(getCourse.value=== "-- Current Courses --"){
+			var chooseCourseError = "Please choose a course."
+			getCourse.style.border = "1px solid red";
+			errorMessage.push(chooseCourseError);
+		}
+		
+		//If errors, display on screen
+		if(errorMessage.length >= 1){
+			for(var i=0, j=errorMessage.length; i < j; i++){
+				var err = document.createElement('li');
+				err.innerHTML = errorMessage[i];
+				errValue.appendChild(err);
+			}
+			e.preventDefault();
+			return false;
+		}else{
+			//If OK, store information
+			storeData()
+		}
 	}
+
+	//Variable Defaults
+	var selectCourses = ["-- Current Courses --", "MMD", "MMD2", "SDI", "VFW", "PMA", "PMA 2"],
+		dueValue;
+		errValue = sData('errors'); 
+	
+	makeCourses();
 	
 	//Button Links
 	var displayLink = sData('displayDataLink');
@@ -198,7 +261,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	var clearLink = sData('boom');
 	clearLink.addEventListener("click", boomData);
 	var save = sData('save');
-	save.addEventListener("click", storeData);
+	save.addEventListener("click", validate);
 	
 	
 	
