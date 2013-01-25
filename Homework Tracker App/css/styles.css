@@ -1,6 +1,7 @@
 /*
 title: my style sheet
 by: John Brandenburg
+project 3
 Term: 0113
 */
 h1 {
@@ -40,7 +41,7 @@ legend {
 errors {
 	font-family: Times;
 	font-size 3pt;
-	text-align: center;
+	text-align: left;
 	color: red;
 }
 nav {
@@ -48,6 +49,6 @@ nav {
 	font-size: 12pt;
 }
 input {
-	text-align: center;
-	color: blue;
+	text-align: left;
+	color: black;
 }

@@ -2,7 +2,7 @@
 <!-- John Brandenburg -->
 <!-- Visual Frameworks -->
 <!-- Term 0113 -->
-<!-- Project 1: Homework Tracker -->
+<!-- Project 3: Homework Tracker -->
 
 <html>
 	<head>
@@ -19,7 +19,11 @@
 	<body>
 		<header><h1>Homework Tracker</h1></header>
 		<p>Enter your information into the fields below to add a new assignment and track your homework.</p>
-
+		<nav>
+			<a href="#" id="boom">Clear Homework</a> 
+			<a href="#" id="displayDataLink">Display Homework</a>
+			<a href="additem.html" id="addAssignment" style="display:none;">Add New Homework</a>
+		</nav>
 <!--Start of my form -->
 		<form action="#" method="post" id="form" >
 			<fieldset>
@@ -58,15 +62,9 @@
 					<li><label for="time">Total Hours To Complete</label><input type="range" min="1" max="10" name="time" type="range" id="complete"></li>
 				</ul>
 			</fieldset>
+			<input type="button" value="Save my stuff!" id="save"/>
 <!-- End of form -->
-		</form>
-		<input type="button" value="Save my stuff!" id="save"/>
-		<nav>
-			<a href="#" id="boom">Clear Stored Data</a> 
-			<a href="#" id="displayDataLink">Display Stored Data</a>
-			<a href="additem.html" id="addAssignment" style="display:none;">Add New Assignment</a>
-		</nav>
-		
+		<form>
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 <html>

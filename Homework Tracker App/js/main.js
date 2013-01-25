@@ -58,8 +58,12 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
-	function storeData(){
-		var userValues		= Math.floor(Math.random()*100000001);
+	function storeData(key){
+		if(!key){
+			var userValues		= Math.floor(Math.random()*100000001);
+		}else{
+			userValues = key;
+		}
 		getRadioButton();
 		
 		var userItem			= {};
@@ -74,10 +78,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		localStorage.setItem(userValues, JSON.stringify(userItem));
 		alert("Homework Added!");
 	}	
-	
-
-	
-	
+		
 	function getData(){
 		dataControls("on");
 		if(localStorage.length === 0){
@@ -113,7 +114,6 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	//Make Item Links
 	function newItemLinks(key, newLinksLi){
-		var newLinksLi = document.createElement('li');
 		//Edit single item link
 		var editLink = document.createElement('a');
 		editLink.href = "#";
@@ -121,7 +121,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var editHWork = "Edit Assignment";
 		editLink.addEventListener("click", editAssignment);
 		editLink.innerHTML = editHWork;
-		newLinksLi.appendChild(editHWork);
+		newLinksLi.appendChild(editLink);
 		
 		//add break tag
 		var lineBreak = document.createElement('br');
@@ -132,13 +132,13 @@ window.addEventListener("DOMContentLoaded", function(){
 		deleteLink.href = "#";
 		deleteLink.key = key;
 		var deleteHWork = "Delete Assignment";
-		//deleteLink.addEventListener("click", deleteAssignment);
+		deleteLink.addEventListener("click", deleteAssignment);
 		deleteLink.innerHTML = deleteHWork;
-		newLinksLi.appendChild(deleteHWork);
+		newLinksLi.appendChild(deleteLink);
 	}
 	
 	function editAssignment(){
-		var value = localStorage.getData(this.key);
+		var value = localStorage.getItem(this.key);
 		var userItem = JSON.parse(value);
 		
 		//Show form
@@ -149,13 +149,13 @@ window.addEventListener("DOMContentLoaded", function(){
 		sData('lname').value = userItem.lname[1];
 		sData('email').value = userItem.email[1];
 		sData('course').value = userItem.course[1];
-		var radioValue = document.forms[0].dueValue;
+		var radioValue = document.forms[0].due;
 		for(var i=0; i<radioValue.length; i++){
-			if(radioValue[i].value == "Yes" && userItem.dueValue[1] == "Yes"){
+			if(radioValue[i].value == "Yes" && userItem.due[1] == "Yes"){
 				radioValue[i].setAttribute("checked", "checked");
-			} else if(radioValue[i].value == "No" && userItem.dueValue = "No"){
+			} else if(radioValue[i].value == "No" && userItem.due == "No"){
 				radioValue[i].setAttribute("checked", "checked");
-			} else if(radioValue[i].value == "Unknown" && userItem.dueValue = "Unknown"){
+			} else if(radioValue[i].value == "Unknown" && userItem.dueValue == "Unknown"){
 				radioValue[i].setAttribute("checked", "checked");
 			}	
 		}		
@@ -163,15 +163,29 @@ window.addEventListener("DOMContentLoaded", function(){
 		sData('notes').value = userItem.notes[1];
 		sData('complete').value = userItem.complete[1];
 		
-		//Remove first listener form input "save assignment"
+		//Remove first listener from input "save assignment"
 		save.removeEventListener("click", storeData);
+		
 		//Change save button to edit
 		sData('save').value = "Edit Assignment";
 		var editSave = sData('save');
-		//
+		
+		//Save the key value established as a property as a function of the editSave event
+		//so we can use that value when we save the data we edited.
 		editSave.addEventListener("click", validate);
 		editSave.key = this.key;
 		
+	}
+		
+	function deleteAssignment(){
+		var confirmDelete = confirm("Are you sure you want to delete the assignment?");
+		if(confirmDelete){
+			localStorage.removeItem(this.key);
+			alert("Assignment was deleted!");
+			window.location.reload();
+		}else{
+			alert("Assignment was NOT deleted!");
+		}
 	}
 	
 	//Clear Data
@@ -186,6 +200,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
+	//Form Validation Function
 	function validate(e){
 		//Define elements to check
 		var getFname = sData('fname');
@@ -243,8 +258,9 @@ window.addEventListener("DOMContentLoaded", function(){
 			e.preventDefault();
 			return false;
 		}else{
-			//If OK, store information
-			storeData()
+			//If OK, store information. 
+			storeData(this.key)
+			window.location.reload();
 		}
 	}
 
@@ -262,7 +278,4 @@ window.addEventListener("DOMContentLoaded", function(){
 	clearLink.addEventListener("click", boomData);
 	var save = sData('save');
 	save.addEventListener("click", validate);
-	
-	
-	
 });
