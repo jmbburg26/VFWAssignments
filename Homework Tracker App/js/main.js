@@ -82,7 +82,8 @@ window.addEventListener("DOMContentLoaded", function(){
 	function getData(){
 		dataControls("on");
 		if(localStorage.length === 0){
-			alert("There are no assignments in Local Storage.");
+			alert("There are no assignments in Local Storage so default data has been added.");
+			defaultData();
 		}
 		//Write Data from Local Storage
 		var makeDiv = document.createElement('div');
@@ -112,6 +113,14 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
+	//Add default JSON data function
+	function defaultData(){
+		for (var n in json){
+			var id = Math.floor(Math.random()*100000001);
+			localStorage.setItem(id, JSON.stringify(json[n]))
+		}
+	
+	}
 	//Make Item Links
 	function newItemLinks(key, newLinksLi){
 		//Edit single item link
