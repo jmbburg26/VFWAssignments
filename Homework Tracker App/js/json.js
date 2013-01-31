@@ -5,7 +5,7 @@ var json = {
 		"email": ["Email:", "mrsjmbburg@gmail.com"],
 		"course": ["Course:", "SDI"],
 		"answer": ["Project Due:", "No"],
-		"date": ["Due Date:", "2013-01-31"],
+		"date": ["Due Date:", "2013-03-15"],
 		"notes": ["Notes:","Are you enjoying School?"],
 		"complete": ["Hours to Complete:","1"]
 	},
@@ -23,9 +23,9 @@ var json = {
 		"fname": ["First Name:", "Allan"],
 		"lname": ["Last Name:", "Bladorn"],
 		"email": ["Email:", "anb122410@gmail.com"],
-		"course": ["Course:", "Bible"],
+		"course": ["Course:", "PMA"],
 		"answer": ["Project Due:", "Unknown"],
-		"date": ["Due Date:", "2013-01-31"],
+		"date": ["Due Date:", "2013-04-7"],
 		"notes": ["Notes:","Is it over?"],
 		"complete": ["Hours to Complete:","8"]
 	}

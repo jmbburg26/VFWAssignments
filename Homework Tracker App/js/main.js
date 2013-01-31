@@ -102,6 +102,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			var newObj = JSON.parse(value);
 			var newSubList = document.createElement('ul');
 			newli.appendChild(newSubList);
+			getCourseImage(newObj.course[1], newSubList);
 			for(var n in newObj){
 				var makeNewSubli = document.createElement('li');
 				newSubList.appendChild(makeNewSubli);
@@ -111,6 +112,15 @@ window.addEventListener("DOMContentLoaded", function(){
 			}
 			newItemLinks(localStorage.key(i), newLinksLi); //Create "delete" and "edit" buttons for items in local storage
 		}
+	}
+	
+	//Get image for correct course
+	function getCourseImage(courseName, newSubList){
+		var imageLi = document.createElement('li');
+		newSubList.appendChild(imageLi);
+		var newImg = document.createElement('img');
+		var setSrc = newImg.setAttribute("src", "images/"+ courseName + ".png");
+		imageLi.appendChild(newImg);
 	}
 	
 	//Add default JSON data function
@@ -158,13 +168,13 @@ window.addEventListener("DOMContentLoaded", function(){
 		sData('lname').value = userItem.lname[1];
 		sData('email').value = userItem.email[1];
 		sData('course').value = userItem.course[1];
-		var radioValue = document.forms[0].due;
+		var radioValue = document.forms[0].answer;
 		for(var i=0; i<radioValue.length; i++){
-			if(radioValue[i].value == "Yes" && userItem.due[1] == "Yes"){
+			if(radioValue[i].value == "Yes" && userItem.answer[1] == "Yes"){
 				radioValue[i].setAttribute("checked", "checked");
-			} else if(radioValue[i].value == "No" && userItem.due == "No"){
+			} else if(radioValue[i].value == "No" && userItem.answer[1] == "No"){
 				radioValue[i].setAttribute("checked", "checked");
-			} else if(radioValue[i].value == "Unknown" && userItem.dueValue == "Unknown"){
+			} else if(radioValue[i].value == "Unknown" && userItem.answer[1] == "Unknown"){
 				radioValue[i].setAttribute("checked", "checked");
 			}	
 		}		
