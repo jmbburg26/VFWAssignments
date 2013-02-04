@@ -1,7 +1,7 @@
 /*
 title: my style sheet
 by: John Brandenburg
-project 3
+project 4
 Term: 0113
 */
 h1 {
@@ -51,4 +51,9 @@ nav {
 input {
 	text-align: left;
 	color: black;
+}
+
+li {
+	background: #fff;
+	margin: 5px
 }
